@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema de Fumigación Inteligente — Tactical By Mongo</title>
+  <meta name="description" content="Proyecto de innovación mecatrónica: sistema de fumigación motorizada con monitoreo térmico, ESP32 e interfaz web." />
+
+  <!-- Google Fonts: Bebas Neue (display) + Barlow (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Barlow+Condensed:wght@500;700&display=swap" rel="stylesheet" />
+
+  <!-- Phosphor Icons (ligero, CDN) -->
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js" defer></script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- =============================================
+       NAVBAR
+  ============================================= -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-brand">
+  <img src="tactical by mongo LOGO 2 (3).png" alt="Logo Tactical By Mongo" class="brand-logo" />
+  <span class="brand-slash">/</span>
+  <span class="brand-name">Fumigación Inteligente</span>
+</a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#proyecto" class="nav-link">El Proyecto</a></li>
+        <li><a href="#funcionamiento" class="nav-link">Funcionamiento</a></li>
+        <li><a href="#componentes" class="nav-link">Componentes</a></li>
+        <li><a href="#mecatronica" class="nav-link">Mecatrónica</a></li>
+        <li><a href="#aporte" class="nav-link">Mi Aporte</a></li>
+        <li><a href="#galeria" class="nav-link">Galería</a></li>
+        <li><a href="#contacto" class="nav-link nav-cta">Cierre</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- =============================================
+       HERO
+  ============================================= -->
+  <section class="hero" id="hero">
+    <!-- Fondo decorativo -->
+    <div class="hero-bg">
+      <div class="hero-grid"></div>
+      <div class="hero-glow"></div>
+    </div>
+
+    <div class="hero-content reveal-hero">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Introducción a la Mecatrónica · Innovación Aplicada
+      </div>
+
+      <h1 class="hero-title">
+        Sistema de<br />
+        <em class="accent">Fumigación</em><br />
+        Inteligente
+      </h1>
+
+      <p class="hero-sub">
+        Monitoreo Térmico en Tiempo Real · ESP32 · Interfaz Web
+      </p>
+
+      <p class="hero-desc">
+        Un sistema de fumigación motorizada potenciado con tecnología de sensórica,
+        control automatizado y visualización remota — fusión de mecánica funcional
+        y electrónica de precisión.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#proyecto" class="btn btn-primary">
+          <i class="ph ph-arrow-down"></i> Ver el proyecto
+        </a>
+        <a href="#funcionamiento" class="btn btn-ghost">
+          ¿Cómo funciona? <i class="ph ph-caret-right"></i>
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-val">ESP32</span>
+          <span class="stat-label">Microcontrolador</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-val">RT</span>
+          <span class="stat-label">Monitoreo en vivo</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-val">IoT</span>
+          <span class="stat-label">Interfaz Web</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-val">6+</span>
+          <span class="stat-label">Áreas integradas</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contenedor para imagen o video del sistema -->
+    <div class="hero-media reveal-hero-media">
+      <div class="media-frame">
+        <!--
+          ========================================
+          REEMPLAZA AQUÍ — IMAGEN O VIDEO HERO
+          Opción 1: Imagen estática
+            <img src="img/sistema-principal.jpg" alt="Sistema de Fumigación" />
+
+          Opción 2: Video
+            <video autoplay muted loop playsinline>
+              <source src="video/demo.mp4" type="video/mp4" />
+            </video>
+          ========================================
+        -->
+       <div class="hero-media reveal-hero-media">
+  <div class="media-frame">
+    <video autoplay muted loop playsinline controls>
+      <source src="video moto 2.mp4" type="video/mp4" />
+      Tu navegador no soporta video HTML5.
+    </video>
+
+    <div class="media-corner tl"></div>
+    <div class="media-corner tr"></div>
+    <div class="media-corner bl"></div>
+    <div class="media-corner br"></div>
+    <div class="media-scan"></div>
+  </div>
+</div>
+        <div class="media-corner tl"></div>
+        <div class="media-corner tr"></div>
+        <div class="media-corner bl"></div>
+        <div class="media-corner br"></div>
+        <div class="media-scan"></div>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       EL PROYECTO
+  ============================================= -->
+  <section class="section section-proyecto" id="proyecto">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">01 — El Proyecto</span>
+        <h2 class="section-title">¿Qué es este sistema?</h2>
+      </div>
+
+      <div class="proyecto-grid">
+        <div class="proyecto-text reveal">
+          <p class="lead-text">
+            Este proyecto nace como una solución práctica y funcional al problema
+            del control operativo en sistemas de fumigación de alta demanda.
+          </p>
+          <p>
+            La base del sistema fue concebida y desarrollada como una unidad mecánica
+            motorizada, robusta y eficiente. A este sistema consolidado se le incorporó
+            una capa tecnológica orientada al monitoreo inteligente, permitiendo
+            supervisar una zona térmica clave del proceso sin la necesidad de
+            intervención manual constante.
+          </p>
+          <p>
+            La idea central es garantizar que el sistema opere dentro de un rango
+            térmico óptimo, mejorando la eficiencia del proceso de fumigación
+            y reduciendo el margen de error operativo.
+          </p>
+          <div class="proyecto-pillars">
+            <div class="pillar">
+              <i class="ph ph-wrench"></i>
+              <span>Mecánica funcional</span>
+            </div>
+            <div class="pillar">
+              <i class="ph ph-cpu"></i>
+              <span>Control electrónico</span>
+            </div>
+            <div class="pillar">
+              <i class="ph ph-globe"></i>
+              <span>Interfaz web</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="proyecto-cards reveal">
+          <div class="info-card">
+            <div class="card-accent"></div>
+            <i class="ph ph-target card-icon"></i>
+            <h3>El problema</h3>
+            <p>La falta de monitoreo térmico en tiempo real en sistemas de fumigación genera ineficiencias operativas y mayor dependencia del criterio humano.</p>
+          </div>
+          <div class="info-card">
+            <div class="card-accent"></div>
+            <i class="ph ph-lightbulb card-icon"></i>
+            <h3>La solución</h3>
+            <p>Integración de sensórica y control digital al sistema mecánico existente, creando un sistema híbrido con mayor precisión y autonomía.</p>
+          </div>
+          <div class="info-card highlight-card">
+            <div class="card-accent"></div>
+            <i class="ph ph-star card-icon"></i>
+            <h3>La innovación</h3>
+            <p>La fusión entre un sistema mecánico consolidado y una capa IoT accesible desde la web representa un enfoque moderno, escalable y práctico.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       CÓMO FUNCIONA
+  ============================================= -->
+  <section class="section section-dark" id="funcionamiento">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">02 — Funcionamiento</span>
+        <h2 class="section-title">El flujo de operación</h2>
+        <p class="section-desc">El sistema opera mediante una secuencia lógica que integra hardware y software de forma coordinada.</p>
+      </div>
+
+      <div class="steps-flow reveal">
+
+        <div class="step-item">
+          <div class="step-number">01</div>
+          <div class="step-content">
+            <div class="step-icon-wrap">
+              <i class="ph ph-thermometer-hot"></i>
+            </div>
+            <h3>Monitoreo térmico</h3>
+            <p>El sensor captura la temperatura de una zona clave dentro del sistema, donde la condición térmica determina la eficiencia del proceso.</p>
+          </div>
+          <div class="step-connector"></div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number">02</div>
+          <div class="step-content">
+            <div class="step-icon-wrap">
+              <i class="ph ph-circuit-board"></i>
+            </div>
+            <h3>Lectura del ESP32</h3>
+            <p>El microcontrolador ESP32 recibe y procesa los datos del sensor en tiempo real, comparándolos continuamente con el umbral configurado.</p>
+          </div>
+          <div class="step-connector"></div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number">03</div>
+          <div class="step-content">
+            <div class="step-icon-wrap">
+              <i class="ph ph-monitor"></i>
+            </div>
+            <h3>Visualización web</h3>
+            <p>Los datos son enviados a una interfaz web que muestra la temperatura actual, el estado del sistema y la configuración de umbral.</p>
+          </div>
+          <div class="step-connector"></div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number">04</div>
+          <div class="step-content">
+            <div class="step-icon-wrap">
+              <i class="ph ph-sliders-horizontal"></i>
+            </div>
+            <h3>Umbral de activación</h3>
+            <p>El operador define el umbral térmico óptimo desde la interfaz. El sistema evalúa constantemente si la condición está dentro del rango deseado.</p>
+          </div>
+          <div class="step-connector"></div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number">05</div>
+          <div class="step-content">
+            <div class="step-icon-wrap">
+              <i class="ph ph-play-circle"></i>
+            </div>
+            <h3>Activación del sistema</h3>
+            <p>Cuando se alcanza la condición térmica adecuada, el sistema entra en operación de forma controlada, garantizando eficiencia en el proceso.</p>
+          </div>
+          <div class="step-connector"></div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number">06</div>
+          <div class="step-content">
+            <div class="step-icon-wrap">
+              <i class="ph ph-trend-up"></i>
+            </div>
+            <h3>Control optimizado</h3>
+            <p>El resultado es un sistema más preciso, menos dependiente de la supervisión manual, con trazabilidad de datos y operación coherente.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Mini dashboard simulado -->
+      <div class="dashboard-preview reveal">
+        <div class="dash-header">
+          <span class="dash-title">
+            <i class="ph ph-activity"></i> Vista previa — Interfaz Web
+          </span>
+          <div class="dash-status">
+            <span class="status-dot active"></span> Sistema activo
+          </div>
+        </div>
+        <div class="dash-body">
+          <div class="dash-metric">
+            <span class="metric-label">Temperatura actual</span>
+            <span class="metric-value" id="dashTemp">--</span>
+            <span class="metric-unit">°C</span>
+          </div>
+          <div class="dash-gauge-wrap">
+            <div class="dash-gauge">
+              <div class="gauge-fill" id="gaugeFill"></div>
+              <div class="gauge-needle" id="gaugeNeedle"></div>
+            </div>
+            <div class="gauge-labels">
+              <span>0°</span><span>Umbral</span><span>100°</span>
+            </div>
+          </div>
+          <div class="dash-metric">
+            <span class="metric-label">Umbral configurado</span>
+            <span class="metric-value accent-text">65</span>
+            <span class="metric-unit">°C</span>
+          </div>
+        </div>
+        <div class="dash-note">
+          <i class="ph ph-info"></i>
+          Representación visual ilustrativa del panel de monitoreo desarrollado.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =============================================
+       COMPONENTES
+  ============================================= -->
+  <section class="section" id="componentes">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">03 — Componentes</span>
+        <h2 class="section-title">Arquitectura del sistema</h2>
+        <p class="section-desc">Los elementos principales que conforman el sistema, integrados en una solución mecatrónica coherente.</p>
+      </div>
+
+      <div class="components-grid">
+
+        <div class="comp-card reveal">
+          <div class="comp-number">01</div>
+          <div class="comp-icon"><i class="ph ph-gear-six"></i></div>
+          <h3>Estructura base</h3>
+          <p>Sistema mecánico motorizado diseñado y construido para operar de forma robusta y eficiente como unidad autónoma de fumigación.</p>
+          <div class="comp-tag">Mecánica</div>
+        </div>
+
+        <div class="comp-card reveal">
+          <div class="comp-number">02</div>
+          <div class="comp-icon"><i class="ph ph-circuit-board"></i></div>
+          <h3>ESP32</h3>
+          <p>Microcontrolador con conectividad Wi-Fi integrada, encargado de la adquisición de datos del sensor y la comunicación con la interfaz web.</p>
+          <div class="comp-tag">Electrónica</div>
+        </div>
+
+        <div class="comp-card reveal">
+          <div class="comp-number">03</div>
+          <div class="comp-icon"><i class="ph ph-thermometer"></i></div>
+          <h3>Sensor de temperatura</h3>
+          <p>Dispositivo de sensórica responsable de capturar el estado térmico de la zona clave del sistema, en tiempo real y con precisión adecuada.</p>
+          <div class="comp-tag">Sensórica</div>
+        </div>
+
+        <div class="comp-card reveal">
+          <div class="comp-number">04</div>
+          <div class="comp-icon"><i class="ph ph-globe"></i></div>
+          <h3>Interfaz web</h3>
+          <p>Panel de visualización accesible desde un navegador, que muestra la temperatura en vivo, el estado del sistema y el umbral configurado.</p>
+          <div class="comp-tag">Software</div>
+        </div>
+
+        <div class="comp-card reveal">
+          <div class="comp-number">05</div>
+          <div class="comp-icon"><i class="ph ph-drop"></i></div>
+          <h3>Sistema de bombeo</h3>
+          <p>Módulo encargado del transporte y presurización del fluido hacia las boquillas del sistema, activado en condiciones controladas.</p>
+          <div class="comp-tag">Hidráulica</div>
+        </div>
+
+        <div class="comp-card reveal">
+          <div class="comp-number">06</div>
+          <div class="comp-icon"><i class="ph ph-flame"></i></div>
+          <h3>Zona térmica</h3>
+          <p>Módulo especializado que gestiona el calentamiento controlado de la línea de fluido, condición necesaria para el proceso óptimo del sistema.</p>
+          <div class="comp-tag">Términal</div>
+        </div>
+
+        <div class="comp-card reveal">
+          <div class="comp-number">07</div>
+          <div class="comp-icon"><i class="ph ph-sliders"></i></div>
+          <h3>Módulo de control</h3>
+          <p>Lógica de decisión implementada en el microcontrolador que evalúa condiciones y gestiona la activación y operación del sistema.</p>
+          <div class="comp-tag">Control</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       APORTE MECATRÓNICO
+  ============================================= -->
+  <section class="section section-dark" id="mecatronica">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">04 — Mecatrónica</span>
+        <h2 class="section-title">Integración multidisciplinaria</h2>
+        <p class="section-desc">La mecatrónica no es la suma de partes — es la integración coherente de múltiples disciplinas en un sistema que funciona como uno.</p>
+      </div>
+
+      <div class="meca-wheel-wrap reveal">
+        <div class="meca-center">
+          <span>Sistema<br/>Integrado</span>
+        </div>
+        <div class="meca-areas">
+          <div class="meca-area">
+            <i class="ph ph-wrench"></i>
+            <h4>Mecánica</h4>
+            <p>Diseño y construcción del sistema físico de fumigación motorizada.</p>
+          </div>
+          <div class="meca-area">
+            <i class="ph ph-lightning"></i>
+            <h4>Electrónica</h4>
+            <p>Circuitería y microcontrolador para la gestión de señales y control.</p>
+          </div>
+          <div class="meca-area">
+            <i class="ph ph-wave-sine"></i>
+            <h4>Sensórica</h4>
+            <p>Lectura de temperatura como variable de proceso clave del sistema.</p>
+          </div>
+          <div class="meca-area">
+            <i class="ph ph-code"></i>
+            <h4>Programación</h4>
+            <p>Firmware del microcontrolador e interfaz web para visualización.</p>
+          </div>
+          <div class="meca-area">
+            <i class="ph ph-arrows-clockwise"></i>
+            <h4>Control</h4>
+            <p>Lógica de umbral y activación que automatiza la operación.</p>
+          </div>
+          <div class="meca-area">
+            <i class="ph ph-monitor-play"></i>
+            <h4>Interfaz HMI</h4>
+            <p>Panel de monitoreo accesible desde cualquier dispositivo con navegador.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="meca-statement reveal">
+        <blockquote>
+          "Un sistema mecatrónico no es simplemente un mecanismo con electrónica añadida
+          — es una arquitectura donde cada componente potencia a los demás."
+        </blockquote>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =============================================
+       MI APORTE
+  ============================================= -->
+  <section class="section section-aporte" id="aporte">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">05 — Mi Aporte</span>
+        <h2 class="section-title">La capa tecnológica</h2>
+      </div>
+
+      <div class="aporte-layout">
+        <div class="aporte-context reveal">
+          <p class="lead-text">
+            El sistema base fue desarrollado por mi papá, quien diseñó y construyó
+            la estructura mecánica funcional que da vida a este proyecto.
+          </p>
+          <p>
+            Mi contribución fue complementar esa base sólida con una capa digital
+            e inteligente: integrar el ESP32, implementar la lectura del sensor de
+            temperatura, desarrollar la interfaz web de monitoreo y configurar la
+            lógica de activación por umbral térmico.
+          </p>
+          <p>
+            El resultado es un sistema completo que combina experiencia mecánica
+            y pensamiento digital — un trabajo compartido donde cada parte suma.
+          </p>
+        </div>
+
+        <div class="aporte-items">
+          <div class="aporte-item reveal">
+            <div class="aporte-icon"><i class="ph ph-circuit-board"></i></div>
+            <div class="aporte-text">
+              <h4>Integración del ESP32</h4>
+              <p>Selección, configuración y conexión del microcontrolador dentro del sistema.</p>
+            </div>
+          </div>
+          <div class="aporte-item reveal">
+            <div class="aporte-icon"><i class="ph ph-thermometer-simple"></i></div>
+            <div class="aporte-text">
+              <h4>Implementación del sensor</h4>
+              <p>Lectura de temperatura en la zona clave del sistema con precisión adecuada.</p>
+            </div>
+          </div>
+          <div class="aporte-item reveal">
+            <div class="aporte-icon"><i class="ph ph-desktop-tower"></i></div>
+            <div class="aporte-text">
+              <h4>Interfaz web de monitoreo</h4>
+              <p>Desarrollo del panel de visualización accesible desde cualquier navegador.</p>
+            </div>
+          </div>
+          <div class="aporte-item reveal">
+            <div class="aporte-icon"><i class="ph ph-sliders-horizontal"></i></div>
+            <div class="aporte-text">
+              <h4>Configuración del umbral</h4>
+              <p>Lógica de activación por condición térmica definida por el operador.</p>
+            </div>
+          </div>
+          <div class="aporte-item reveal">
+            <div class="aporte-icon"><i class="ph ph-plug"></i></div>
+            <div class="aporte-text">
+              <h4>Complemento digital del sistema</h4>
+              <p>Integración coherente entre hardware mecánico y capa electrónica/software.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =============================================
+       BENEFICIOS
+  ============================================= -->
+  <section class="section section-dark" id="beneficios">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">06 — Beneficios</span>
+        <h2 class="section-title">Valor del sistema</h2>
+      </div>
+
+      <div class="benefits-grid">
+        <div class="benefit-card reveal">
+          <i class="ph ph-activity"></i>
+          <h4>Monitoreo en tiempo real</h4>
+          <p>Visualización continua del estado térmico del sistema sin necesidad de revisión física.</p>
+        </div>
+        <div class="benefit-card reveal">
+          <i class="ph ph-gauge"></i>
+          <h4>Mayor precisión operativa</h4>
+          <p>Activación basada en condiciones reales medidas, eliminando el criterio subjetivo.</p>
+        </div>
+        <div class="benefit-card reveal">
+          <i class="ph ph-link"></i>
+          <h4>Integración hardware-software</h4>
+          <p>Un solo sistema coherente que conecta la parte mecánica con la capa digital.</p>
+        </div>
+        <div class="benefit-card reveal">
+          <i class="ph ph-globe-hemisphere-west"></i>
+          <h4>Acceso remoto</h4>
+          <p>La interfaz web permite supervisión desde cualquier dispositivo conectado a la red.</p>
+        </div>
+        <div class="benefit-card reveal">
+          <i class="ph ph-arrows-out"></i>
+          <h4>Escalabilidad futura</h4>
+          <p>Arquitectura abierta que permite ampliar funcionalidades sin rediseñar el sistema base.</p>
+        </div>
+        <div class="benefit-card reveal">
+          <i class="ph ph-sparkle"></i>
+          <h4>Enfoque innovador</h4>
+          <p>Combina experiencia artesanal con tecnología moderna en una solución práctica y real.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       GALERÍA
+  ============================================= -->
+  <section class="section" id="galeria">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">07 — Galería</span>
+        <h2 class="section-title">El sistema en imágenes</h2>
+        <p class="section-desc">Documentación visual del proyecto — sistema físico, componentes e interfaz web.</p>
+      </div>
+
+      <div class="gallery-grid reveal">
+
+        <!--
+          ====================================================
+          REEMPLAZA AQUÍ — IMAGEN GRANDE (portada de galería)
+          <img src="img/sistema-completo.jpg" alt="Sistema completo" />
+          ====================================================
+        -->
+        <div class="gallery-item gallery-main">
+  <img src="Gemini_Generated_Image_b5ib9ab5ib9ab5ib.png" alt="Sistema completo" />
+  <div class="gallery-overlay">
+    <span>Sistema completo</span>
+  </div>
+</div>
+
+        <!--
+          ====================================================
+          REEMPLAZA AQUÍ — IMAGEN 2
+          <img src="img/esp32-montaje.jpg" alt="ESP32 montado" />
+          ====================================================
+        -->
+ <div class="gallery-item">
+  <video autoplay muted loop playsinline>
+    <source src="WhatsApp Video 2026-03-31 at 10.18.06.mp4" type="video/mp4" />
+    Tu navegador no soporta video HTML5.
+  </video>
+  <div class="gallery-overlay"><span>Módulo electrónico</span></div>
+</div>
+
+        <!--
+          ====================================================
+          REEMPLAZA AQUÍ — IMAGEN 3
+          <img src="img/zona-termica.jpg" alt="Zona térmica" />
+          ====================================================
+        
+        <div class="gallery-item">
+          <div class="gallery-placeholder">
+            <i class="ph ph-flame"></i>
+            <p>Zona térmica</p>
+            <span>img/zona-termica.jpg</span>
+          </div>
+          <div class="gallery-overlay"><span>Zona de calentamiento</span></div>
+        </div>  -->
+
+        <!--
+          ====================================================
+          REEMPLAZA AQUÍ — IMAGEN 4 (captura de interfaz web)
+          <img src="img/interfaz-web.png" alt="Interfaz web" />
+          ====================================================
+        -->
+        <div class="gallery-item gallery-ui">
+  <img src="interfaz.png" alt="Interfaz web de monitoreo" />
+  <div class="gallery-overlay">
+    <span>Interfaz de monitoreo</span>
+  </div>
+</div>
+
+        <!--
+          ====================================================
+          REEMPLAZA AQUÍ — VIDEO (demo del funcionamiento)
+          Para video, cambia el div por:
+          <div class="gallery-item gallery-video">
+            <video controls poster="img/video-thumb.jpg">
+              <source src="video/demo.mp4" type="video/mp4" />
+            </video>
+          </div>
+          ====================================================
+        -->
+         <div class="gallery-item gallery-video">
+  <video class="autoplay-scroll-video" muted loop playsinline preload="metadata">
+    <source src="moto.mp4" type="video/mp4" />
+    Tu navegador no soporta video HTML5.
+  </video>
+
+  <div class="gallery-overlay">
+    <span>Demostración en funcionamiento</span>
+  </div>
+</div>
+  </section>
+
+  <!-- =============================================
+       LÍNEA DE TIEMPO
+  ============================================= -->
+  <section class="section section-dark" id="timeline">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">08 — Proceso</span>
+        <h2 class="section-title">Evolución del proyecto</h2>
+      </div>
+
+      <div class="timeline">
+
+        <div class="tl-item reveal">
+          <div class="tl-marker">
+            <div class="tl-dot"></div>
+          </div>
+          <div class="tl-content">
+            <span class="tl-step">Fase 01</span>
+            <h4>Idea inicial</h4>
+            <p>Identificación de la necesidad de un sistema de fumigación más eficiente y controlado para uso práctico y real.</p>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-marker">
+            <div class="tl-dot"></div>
+          </div>
+          <div class="tl-content">
+            <span class="tl-step">Fase 02</span>
+            <h4>Desarrollo del sistema base</h4>
+            <p>Diseño y construcción de la estructura mecánica motorizada: el núcleo funcional del proyecto, desarrollado por mi papá.</p>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-marker">
+            <div class="tl-dot"></div>
+          </div>
+          <div class="tl-content">
+            <span class="tl-step">Fase 03</span>
+            <h4>Incorporación del monitoreo</h4>
+            <p>Análisis de la zona clave del sistema y definición de la variable a monitorear: temperatura de operación.</p>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-marker">
+            <div class="tl-dot"></div>
+          </div>
+          <div class="tl-content">
+            <span class="tl-step">Fase 04</span>
+            <h4>Integración del ESP32</h4>
+            <p>Selección del microcontrolador, conexión del sensor de temperatura y configuración del firmware de lectura de datos.</p>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-marker">
+            <div class="tl-dot"></div>
+          </div>
+          <div class="tl-content">
+            <span class="tl-step">Fase 05</span>
+            <h4>Desarrollo de la interfaz web</h4>
+            <p>Diseño y programación del panel de monitoreo accesible desde el navegador, con visualización de temperatura y estado del sistema.</p>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-marker tl-final">
+            <div class="tl-dot"></div>
+          </div>
+          <div class="tl-content">
+            <span class="tl-step">Resultado</span>
+            <h4>Sistema mecatrónico funcional</h4>
+            <p>Integración completa de la parte mecánica y la capa digital, resultando en un sistema cohesivo, controlado y presentable como proyecto de innovación.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       FUTURAS MEJORAS
+  ============================================= -->
+  <section class="section" id="mejoras">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">09 — Futuro</span>
+        <h2 class="section-title">Próximas iteraciones</h2>
+        <p class="section-desc">El sistema actual es la primera versión funcional de una plataforma con alto potencial de evolución.</p>
+      </div>
+
+      <div class="mejoras-grid">
+
+        <div class="mejora-item reveal">
+          <div class="mejora-num">→</div>
+          <div>
+            <h4>Historial de datos</h4>
+            <p>Almacenamiento local o en la nube de lecturas históricas para análisis de patrones operativos.</p>
+          </div>
+        </div>
+
+        <div class="mejora-item reveal">
+          <div class="mejora-num">→</div>
+          <div>
+            <h4>Monitoreo remoto</h4>
+            <p>Acceso a los datos del sistema desde cualquier lugar, sin necesidad de estar en la misma red local.</p>
+          </div>
+        </div>
+
+        <div class="mejora-item reveal">
+          <div class="mejora-num">→</div>
+          <div>
+            <h4>Alertas automáticas</h4>
+            <p>Notificaciones por correo o mensaje cuando se detecten condiciones fuera del rango operativo.</p>
+          </div>
+        </div>
+
+        <div class="mejora-item reveal">
+          <div class="mejora-num">→</div>
+          <div>
+            <h4>Panel de control avanzado</h4>
+            <p>Interfaz más completa con gráficas en tiempo real, historial visual y múltiples parámetros configurables.</p>
+          </div>
+        </div>
+
+        <div class="mejora-item reveal">
+          <div class="mejora-num">→</div>
+          <div>
+            <h4>Automatización ampliada</h4>
+            <p>Lógica de control más sofisticada integrando múltiples sensores y condiciones de operación.</p>
+          </div>
+        </div>
+
+        <div class="mejora-item reveal">
+          <div class="mejora-num">→</div>
+          <div>
+            <h4>Escalabilidad</h4>
+            <p>Adaptación de la arquitectura a otros tipos de sistemas o aplicaciones industriales similares.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       CIERRE
+  ============================================= -->
+  <section class="section section-cierre" id="contacto">
+    <div class="container">
+      <div class="cierre-content reveal">
+        <span class="section-tag">Cierre</span>
+
+        <h2 class="cierre-title">
+          Mecánica con inteligencia.<br />
+          <em class="accent">Innovación con propósito.</em>
+        </h2>
+
+        <p class="cierre-desc">
+          Este proyecto demuestra que la mecatrónica no es solo teoría académica —
+          es la disciplina que permite transformar un sistema mecánico funcional en
+          una solución tecnológica moderna, escalable y con valor real.
+        </p>
+
+        <div class="cierre-signature">
+          <div class="sig-block">
+            <span class="sig-label">Presentado por</span>
+            <span class="sig-name">
+              <!--
+                REEMPLAZA AQUÍ tu nombre:
+                <strong>Tu Nombre Completo</strong>
+              -->
+              <strong>Eric Espinosa Oses — Introducción a la Mecatrónica</strong>
+            </span>
+          </div>
+          <div class="sig-divider"></div>
+          <div class="sig-block">
+            <span class="sig-label">Taller de origen</span>
+            <span class="sig-name"><strong>Tactical By Mongo</strong></span>
+          </div>
+        </div>
+
+        <div class="cierre-brand">
+  <img src="tactical by mongo LOGO 2 (3).png" alt="Logo Tactical By Mongo" class="cierre-logo" />
+  <span>Tactical By Mongo</span>
+</div>
+      </div>
+    </div>
+
+    <!-- Fondo decorativo del cierre -->
+    <div class="cierre-bg">
+      <div class="cierre-glow"></div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       FOOTER
+  ============================================= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-brand">
+          <span class="brand-tag"></span> Sistema de Fumigación Inteligente
+        </span>
+        <span class="footer-note">
+          Proyecto universitario — Introducción a la Mecatrónica
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botón scroll to top -->
+  <button class="scroll-top" id="scrollTop" aria-label="Volver arriba">
+    <i class="ph ph-arrow-up"></i>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
